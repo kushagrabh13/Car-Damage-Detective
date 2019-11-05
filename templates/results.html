@@ -9,16 +9,16 @@
 {% endif %}
     <h3>Damage Assessment Complete</h3>
     <br>
-    <p><img src="{{ url_for('send_file', filename=filename) }}" class="img-thumbnail" id="picture"></p>
+    <p><img src="static{{ url_for('send_file', filename=filename) }}" class="img-thumbnail" id="picture"></p>
       <h4>Results:</h4>
     <table>
-    {% if prediction[0] %}
+    {% if prediction['is_damaged'] %}
         <tr><td>Damaged</td>
         <td><span class="glyphicon glyphicon-ok"></span></td></tr>
         <tr><td>Location</td>
-        <td>{{ prediction[1] }}</td></tr>
+        <td>{{ ', '.join(prediction['damage_location']) }}</td></tr>
         <tr><td>Severity</td>
-        <td>{{ prediction[2] }}</td></tr>
+        <td>{{ prediction['damage_severity'] }}</td></tr>
         </table>
     {% else %}
         <tr><td>Damaged</td>
